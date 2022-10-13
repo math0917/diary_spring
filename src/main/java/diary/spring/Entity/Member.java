@@ -1,9 +1,13 @@
 package diary.spring.Entity;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
-public class Member {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Member{
     @Id
     @GeneratedValue
     @Column(name = "member_id")
@@ -13,6 +17,7 @@ public class Member {
     @OneToOne
     @JoinColumn(name = "already_id")
     private Already already;
+
 
 
 }

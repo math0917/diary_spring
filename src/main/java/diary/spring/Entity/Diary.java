@@ -1,9 +1,13 @@
 package diary.spring.Entity;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
-public class Diary {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Diary extends BaseEntity{
     @Id
     @GeneratedValue
     @Column(name = "diary_id")
