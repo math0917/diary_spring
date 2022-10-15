@@ -17,6 +17,13 @@ public class Diary extends BaseEntity{
     @JoinColumn(name = "already_id")
     private Already already;
 
+    private int day;
     @Column(length = 2000)
     private String content;
+
+    public Diary(Already already, int day, String content) {
+        this.already = already;
+        this.day = day;
+        this.content = content;
+    }
 }

@@ -20,4 +20,9 @@ public class NotYet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "picture_id")
     private Picture picture;
+
+    public NotYet(Member member, Picture picture) {
+        this.member = member;
+        this.picture = picture;
+    }
 }
