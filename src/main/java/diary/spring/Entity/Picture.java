@@ -24,4 +24,9 @@ public class Picture {
     @Column(name = "dot_count")
     private int dotCount;
 
+    public Picture(String filePath, String fileName, int dotCount) {
+        this.filePath = filePath;
+        this.fileName = fileName;
+        this.dotCount = dotCount;
+    }
 }
