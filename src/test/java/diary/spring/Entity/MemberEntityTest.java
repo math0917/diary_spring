@@ -25,10 +25,10 @@ class MemberEntityTest {
         //when
         em.flush();
         em.clear();
-        if (member.getLatest().isPresent()) {
-
-        } else {
+        if (member.getLatestId() == -1) {
             System.out.println("complete");
+        } else {
+            System.out.println("fail");
         }
 
         //then

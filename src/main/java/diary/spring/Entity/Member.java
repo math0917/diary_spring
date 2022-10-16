@@ -1,6 +1,7 @@
 package diary.spring.Entity;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.Optional;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Member{
     @Id
     @GeneratedValue
@@ -15,17 +17,15 @@ public class Member{
     private Long id;
 
     private String username;
-    @OneToOne
-    @JoinColumn(name = "already_id")
-    private Already already;
+
+    private Long latestId;
 
     public Member(String username) {
         this.username = username;
+        this.latestId = -1L;
     }
 
 
 
-    public Optional<Already> getLatest() {
-        return Optional.ofNullable(this.already);
-    }
+
 }
