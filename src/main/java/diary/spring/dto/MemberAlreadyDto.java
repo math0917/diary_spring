@@ -13,4 +13,5 @@ public class MemberAlreadyDto {
     public MemberAlreadyDto(Long latestId) {
         this.latestId = latestId;
     }
+
 }

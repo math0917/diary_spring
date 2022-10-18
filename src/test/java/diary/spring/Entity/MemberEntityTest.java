@@ -25,11 +25,9 @@ class MemberEntityTest {
         //when
         em.flush();
         em.clear();
-        if (member.getLatestId() == -1) {
-            System.out.println("complete");
-        } else {
-            System.out.println("fail");
-        }
+
+        assertThat(member.getLatestId()).isEqualTo(-1);
+
 
         //then
     }
