@@ -29,4 +29,4 @@ springdatajpa가 제공해주는 기능이 아닌걸 querydsl로 작성하려다
 # 6 일차 
 ### 제공할 기능을 재정의
 ### Service 파트부터 정의를 하고, Repsoitory를 적용 그 후 Controller를 연결 v1
-모든 기능을 구현하는 것이 아닌 일부만 우선 구
+모든 기능을 구현하는 것이 아닌 일부만 우선 구현
