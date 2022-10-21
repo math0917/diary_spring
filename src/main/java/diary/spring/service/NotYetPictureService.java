@@ -8,7 +8,7 @@ import diary.spring.entity.Picture;
 import java.util.List;
 
 public interface NotYetPictureService {
-    Long addNotYetPicture(Long memberId,Long pictureId);
+    Long addNotYetPicture(Member member,Picture picture);
 
     AlreadyPicture notYetPictureToAlreadyPicture(Long notYetPictureId);
 

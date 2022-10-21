@@ -1,6 +1,8 @@
 package diary.spring.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
     @Id
     @GeneratedValue

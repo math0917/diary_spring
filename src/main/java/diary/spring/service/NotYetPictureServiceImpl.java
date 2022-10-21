@@ -23,13 +23,8 @@ public class NotYetPictureServiceImpl implements NotYetPictureService{
     private final AlreadyPictureRepository alreadyPictureRepository;
     private final MemberRepository memberRepository;
     @Override
-    public Long addNotYetPicture(Long memberId, Long pictureId) {
-        Optional<Member> member = memberRepository.findById(memberId);
-        Optional<Picture> picture = pictureRepository.findById(pictureId);
-        if (member.isPresent() && picture.isPresent()) {
-            return createNotYetPicture(member.get(), picture.get()).getId();
-        }
-        return null;
+    public Long addNotYetPicture(Member member, Picture picture) {
+        return createNotYetPicture(member, picture).getId();
     }
     @Override
     public AlreadyPicture notYetPictureToAlreadyPicture(Long notYetPictureId) {
