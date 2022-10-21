@@ -11,6 +11,7 @@ import diary.spring.repository.PictureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -54,8 +55,18 @@ public class NotYetPictureServiceImpl implements NotYetPictureService{
     }
 
     private Map<String, Object> deleteNotYetPictureReturnInfo(Long notYetPictureId) {
-        Map<String, Object> memberPicture = notYetPictureRepository.findMemberPictureById(notYetPictureId);
+        NotYetPicture notYetPicture = notYetPictureRepository.findByIdEager(notYetPictureId);
+        System.out.println("notYetPicture.getMember() = " + notYetPicture.getMember());
+        Map<String, Object> memberPicture = getStringObjectMap(notYetPicture);
         notYetPictureRepository.deleteById(notYetPictureId);
+        return memberPicture;
+    }
+
+    private static Map<String, Object> getStringObjectMap(NotYetPicture notYetPicture) {
+        Map<String, Object> memberPicture = new HashMap<>();
+        memberPicture.put("member", notYetPicture.getMember());
+        memberPicture.put("picture", notYetPicture.getPicture());
+        memberPicture.put("dotCount", notYetPicture.getDotCount());
         return memberPicture;
     }
 
