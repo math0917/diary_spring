@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
     @Override
-    public Long save(Member member) {
-        memberRepository.save(member);
-        return member.getId();
+    public Long save(String username, int age) {
+        Member member = new Member(username, age);
+        return memberRepository.save(member).getId();
     }
 
 

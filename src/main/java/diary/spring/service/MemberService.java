@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 
 public interface MemberService {
-    Long save(Member member);
+    Long save(String username, int age);
 
 
 }

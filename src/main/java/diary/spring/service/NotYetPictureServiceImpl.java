@@ -7,6 +7,7 @@ import diary.spring.entity.Picture;
 import diary.spring.repository.AlreadyPictureRepository;
 import diary.spring.repository.MemberRepository;
 import diary.spring.repository.NotYetPictureRepository;
+import diary.spring.repository.PictureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +17,32 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class NotYetPictureServiceImpl {
+public class NotYetPictureServiceImpl implements NotYetPictureService{
     private final NotYetPictureRepository notYetPictureRepository;
+    private final PictureRepository pictureRepository;
     private final AlreadyPictureRepository alreadyPictureRepository;
-    Long addNotYetPicture(Member member, Picture picture) {
-        return createNotYetPicture(member, picture).getId();
+    private final MemberRepository memberRepository;
+    @Override
+    public Long addNotYetPicture(Long memberId, Long pictureId) {
+        Optional<Member> member = memberRepository.findById(memberId);
+        Optional<Picture> picture = pictureRepository.findById(pictureId);
+        if (member.isPresent() && picture.isPresent()) {
+            return createNotYetPicture(member.get(), picture.get()).getId();
+        }
+        return null;
     }
-
-    AlreadyPicture notYetPictureToAlreadyPicture(Long notYetPictureId) {
+    @Override
+    public AlreadyPicture notYetPictureToAlreadyPicture(Long notYetPictureId) {
         Map<String, Object> memberPicture = deleteNotYetPictureReturnInfo(notYetPictureId);
         return alreadyPictureRepository.save(createAlreadyPicture(memberPicture));
     }
-
-    List<NotYetPicture> notYetPictureList(Member member) {
-        return notYetPictureRepository.findByMember(member);
+    @Override
+    public List<NotYetPicture> notYetPictureList(Long memberId) {
+        Optional<Member> member = memberRepository.findById(memberId);
+        if (member.isPresent()) {
+            return notYetPictureRepository.findByMember(member.get());
+        }
+        return null;
     }
 
     private NotYetPicture createNotYetPicture(Member member, Picture picture) {
